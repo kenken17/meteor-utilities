@@ -17,6 +17,6 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
 	api.use('tinytest');
-	api.use('utilities');
+	api.use('kenken:meteor-utilities');
 	api.addFiles('utilities-tests.js');
 });
