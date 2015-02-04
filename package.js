@@ -10,9 +10,14 @@ Package.onUse(function(api) {
 
 	// Meteor dependencies
 	api.use('ui');
+	api.use('underscore', ['client', 'server']);
 
 	// Main file
 	api.addFiles('utilities.js');
+
+	if (api.export) {
+		api.export('MUtil');
+	}
 });
 
 Package.onTest(function(api) {
