@@ -38,3 +38,28 @@ UI.registerHelper('shouldHide', function(x, y) {
 UI.registerHelper('notHide', function(x, y) {
 	return x == y ? '' : 'hide';
 });
+
+MUtil = {
+	dataInput: function($target) {
+		var inputValues = {};
+
+		$target.find('input, select, textarea').each(function() {
+			var $this = $(this);
+
+			if ($this.attr('data-name')) {
+				var name = $this.data('name'),
+					value = $this.val();
+
+				if ($this.attr('type') === 'number') {
+					inputValues[name] = _.isNaN(parseFloat(value)) ? value : parseFloat(value);
+				} else {
+					inputValues[name] = value;
+				}
+
+				inputValues[name] = value;
+			}
+		});
+
+		return inputValues;
+	}
+};
