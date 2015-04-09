@@ -10,18 +10,24 @@ Package.onUse(function(api) {
 
 	// Meteor dependencies
 	api.use('ui');
-	api.use('underscore', ['client', 'server']);
+	api.use('templating');
+	api.use('underscore');
 
-	// Main file
-	api.addFiles('utilities.js');
+	// Both client and server file
+	api.addFiles('lib/helpers_utilities.js');
+	api.addFiles('lib/helpers_format.js');
+
+	// Client
+	api.addFiles('client/helpers_class.js');
+	api.addFiles('client/helpers_format.js');
 
 	if (api.export) {
-		api.export('MUtil');
+		api.export('MUtilities');
 	}
 });
 
 Package.onTest(function(api) {
 	api.use('tinytest');
 	api.use('kenken:meteor-utilities');
-	api.addFiles('utilities-tests.js');
+	api.addFiles('tests/utilities-tests.js');
 });
