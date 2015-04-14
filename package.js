@@ -1,7 +1,7 @@
 Package.describe({
 	name: 'kenken:meteor-utilities',
 	summary: 'A collection of common utilities for general app development.',
-	version: '2.1.0',
+	version: '2.1.2',
 	git: 'https://github.com/kenken17/meteor-utilities'
 });
 
