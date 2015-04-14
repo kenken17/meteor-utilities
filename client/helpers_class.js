@@ -1,7 +1,7 @@
 MUtilities = MUtilities || {};
 
 UI.registerHelper('should', function(verb, x, y) {
-	if (arguments.length <= 2) {
+	if (arguments.length <= 3) {
 		return x ? verb : '';
 	} else {
 		return x === y ? verb : '';
@@ -9,7 +9,7 @@ UI.registerHelper('should', function(verb, x, y) {
 });
 
 UI.registerHelper('not', function(verb, x, y) {
-	if (arguments.length <= 2) {
+	if (arguments.length <= 3) {
 		return x ? '' : verb;
 	} else {
 		return x === y ? '': verb;
