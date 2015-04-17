@@ -93,6 +93,8 @@ $('#myform').on('submit', function(e) {
 ####MUtilities.dateFormat(dateObject)
 `dateFormat` will return the a naive predefined date format in `YYYY-MM-DD`. By now the format are fixed.
 
+*Examples:*
+
 ```javascript
 var myDate = MUtilities.dateFormat(new Date());	// e.g. myDate = '2104-04-15'
 ```
@@ -101,8 +103,21 @@ var myDate = MUtilities.dateFormat(new Date());	// e.g. myDate = '2104-04-15'
 ####MUtilities.datetimeFormat(dateObject)
 `datetimeFormat` will return the a naive predefined date & time format in `YYYY-MM-DD HH:MM (period)`. By now the format are fixed.
 
+*Examples:*
+
 ```javascript
 var myDate = MUtilities.dateFormat(new Date());	// e.g. myDate = '2104-04-15 12:00 AM'
+```
+---
+
+####MUtilities.isValidWebUrl(testUrl)
+`isValidWebUrl` will return true is the input `testUrl` is a valid web url. The testing regular expression was taken from a [gist](https://gist.github.com/dperini/729294) by Diego Perini.
+
+*Examples:*
+
+```javascript
+var var1 = MUtilities.isValidWebUrl('http://www.github.com');	// true
+var var2 = MUtilities.isValidWebUrl('I am not a url.');	// false
 ```
 ---
 
