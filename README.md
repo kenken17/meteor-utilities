@@ -124,7 +124,7 @@ var var2 = MUtilities.isValidWebUrl('I am not a url.');	// false
 ##UI Helpers
 
 ####{{should verb exp1 [exp2]}}
-The `{{should}}` helper is to print out the `verb` given when condition is true. There is places such as output a class or a string when certain condition is true.
+The `{{should}}` helper is to print out the `verb` given when condition is true. There are places such as output a class or a string when certain condition is true.
 
 *Examples:*
 
@@ -158,3 +158,37 @@ The opposite of `{{should}}`, `{{not}}` will print the `verb` when the condition
 <p>STRING HERE</p>
 ```
 
+####{{shouldIn verb exp1 exp2}}
+The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp2` is in the `exp1` array. It will print out the `verb` given when condition is true. 
+
+*Note that `exp2` is required.*
+
+*Examples:*
+
+```html
+<!-- roles = ['admin'] -->
+<p>{{shouldIn 'I am admin' roles 'admin}}</p>	<!-- true condition -->
+```
+
+*output (html source):*
+
+```html
+<p>I am admin</p>
+```
+---
+
+####{{notIn verb exp1 exp2}}
+The opposite of `{{shouldIn}}`, `{{notIn}}` will print the `verb` when the condition is false.
+
+*Examples:*
+
+```html
+<!-- roles = ['admin'] -->
+<p>{{notIn 'I am stranger' roles 'stranger'}}</p>	<!-- false condition -->
+```
+
+*output: (html source)*
+
+```
+<p>I am stranger</p>
+```
