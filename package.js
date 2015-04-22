@@ -27,7 +27,8 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-	api.use('tinytest');
+	api.use(['mike:mocha-package@0.5.6', "practicalmeteor:chai"]);
 	api.use('kenken:meteor-utilities');
+
 	api.addFiles('tests/utilities-tests.js');
 });
