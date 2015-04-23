@@ -20,11 +20,7 @@ describe('MUtilities', function() {
 							},
 							input = MUtilities.readyProps($form);
 
-						// compare the outcome only
-						result = JSON.stringify(result);
-						input = JSON.stringify(input);
-
-						expect(input).equal(result);
+						assert.deepEqual(input, result);
 					});
 
 					it('should result data from a form, with data-name (on sring &  number).', function() {
@@ -38,11 +34,7 @@ describe('MUtilities', function() {
 							},
 							input = MUtilities.readyProps($form);
 
-						// compare the outcome only
-						result = JSON.stringify(result);
-						input = JSON.stringify(input);
-
-						expect(input).equal(result);
+						assert.deepEqual(input, result);
 					});
 
 					it('should result data from a form, with data-name (with nested naming on string).', function() {
@@ -56,11 +48,7 @@ describe('MUtilities', function() {
 							},
 							input = MUtilities.readyProps($form);
 
-						// compare the outcome only
-						result = JSON.stringify(result);
-						input = JSON.stringify(input);
-
-						expect(input).equal(result);
+						assert.deepEqual(input, result);
 					});
 
 					it('should result data from a form, with data-name (with nested naming on string & number).', function() {
@@ -76,11 +64,7 @@ describe('MUtilities', function() {
 							},
 							input = MUtilities.readyProps($form);
 
-						// compare the outcome only
-						result = JSON.stringify(result);
-						input = JSON.stringify(input);
-
-						expect(input).equal(result);
+						assert.deepEqual(input, result);
 					});
 				}
 			});
