@@ -8,6 +8,82 @@ describe('MUtilities', function() {
 			it('should show readyProps is a function', function() {
 				expect(MUtilities.readyProps).to.be.a('function');
 			});
+
+			describe('Client:', function() {
+				if (Meteor.isClient) {
+					it('should result data from a form, with data-name (on string).', function() {
+						var $form = $('<form>' +
+							'<input type="text" data-name="dataString" value="a string" />' +
+							'</form>'),
+							result = {
+								dataString: 'a string'
+							},
+							input = MUtilities.readyProps($form);
+
+						// compare the outcome only
+						result = JSON.stringify(result);
+						input = JSON.stringify(input);
+
+						expect(input).equal(result);
+					});
+
+					it('should result data from a form, with data-name (on sring &  number).', function() {
+						var $form = $('<form>' +
+							'<input type="text" data-name="dataString" value="a string" />' +
+							'<input type="number" data-name="dataNumber" value="1" />' +
+							'</form>'),
+							result = {
+								dataString: 'a string',
+								dataNumber: 1
+							},
+							input = MUtilities.readyProps($form);
+
+						// compare the outcome only
+						result = JSON.stringify(result);
+						input = JSON.stringify(input);
+
+						expect(input).equal(result);
+					});
+
+					it('should result data from a form, with data-name (with nested naming on string).', function() {
+						var $form = $('<form>' +
+							'<input type="text" data-name="level.dataString" value="a string" />' +
+							'</form>'),
+							result = {
+								level: {
+									dataString: 'a string'
+								}
+							},
+							input = MUtilities.readyProps($form);
+
+						// compare the outcome only
+						result = JSON.stringify(result);
+						input = JSON.stringify(input);
+
+						expect(input).equal(result);
+					});
+
+					it('should result data from a form, with data-name (with nested naming on string & number).', function() {
+						var $form = $('<form>' +
+							'<input type="text" data-name="level.dataString" value="a string" />' +
+							'<input type="number" data-name="level.dataNumber" value="1" />' +
+							'</form>'),
+							result = {
+								level: {
+									dataString: 'a string',
+									dataNumber: 1
+								}
+							},
+							input = MUtilities.readyProps($form);
+
+						// compare the outcome only
+						result = JSON.stringify(result);
+						input = JSON.stringify(input);
+
+						expect(input).equal(result);
+					});
+				}
+			});
 		});
 
 		describe('isValidWebUrl', function() {
