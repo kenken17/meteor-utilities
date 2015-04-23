@@ -1,7 +1,7 @@
 Package.describe({
 	name: 'kenken:meteor-utilities',
 	summary: 'A collection of common utilities for general app development.',
-	version: '2.3.3',
+	version: '2.3.4',
 	git: 'https://github.com/kenken17/meteor-utilities'
 });
 
@@ -27,7 +27,8 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-	api.use('tinytest');
+	api.use(['mike:mocha-package@0.5.6', "practicalmeteor:chai"]);
 	api.use('kenken:meteor-utilities');
+
 	api.addFiles('tests/utilities-tests.js');
 });
