@@ -12,7 +12,7 @@ $ meteor add kenken:meteor-utilities
 ##Utilities
 Below are current available utility methods. This list will go on...
 
-####MUtilities.readyProps($form)
+####MUtilities.readyProps($form) - *client only*
 Most of the time, we need to convert form inputs into javascript object literal. The `MUtilities.readyProps` could help out. By adding `data-name` data attribute to the input elements, the utility method will pick up the respected input value. Current support:
 
 - \<input>
@@ -90,6 +90,17 @@ $('#myform').on('submit', function(e) {
 ```
 ---
 
+####MUtilities.isValidWebUrl(testUrl) - *client only*
+`isValidWebUrl` will return true is the input `testUrl` is a valid web url. The testing regular expression was taken from a [gist](https://gist.github.com/dperini/729294) by Diego Perini.
+
+*Examples:*
+
+```javascript
+var var1 = MUtilities.isValidWebUrl('http://www.github.com');	// true
+var var2 = MUtilities.isValidWebUrl('I am not a url.');	// false
+```
+---
+
 ####MUtilities.dateFormat(dateObject)
 `dateFormat` will return the a naive predefined date format in `YYYY-MM-DD`. By now the format are fixed.
 
@@ -106,18 +117,19 @@ var myDate = MUtilities.dateFormat(new Date());	// e.g. myDate = '2104-04-15'
 *Examples:*
 
 ```javascript
-var myDate = MUtilities.dateFormat(new Date());	// e.g. myDate = '2104-04-15 12:00 AM'
+var myDate = MUtilities.datetimeFormat(new Date());	// e.g. myDate = '2104-04-15 12:00 AM'
 ```
 ---
 
-####MUtilities.isValidWebUrl(testUrl)
-`isValidWebUrl` will return true is the input `testUrl` is a valid web url. The testing regular expression was taken from a [gist](https://gist.github.com/dperini/729294) by Diego Perini.
+####MUtilities.currencyFormat(value, [[prefix], decimal])
+`currencyFormat` will return a simple currency format for the input value, default to be 2 decimal point and no prefix.
 
 *Examples:*
 
 ```javascript
-var var1 = MUtilities.isValidWebUrl('http://www.github.com');	// true
-var var2 = MUtilities.isValidWebUrl('I am not a url.');	// false
+var myMoney = MUtilities. currencyFormat(23);	// e.g. myMoney = '23.00'
+var myMoney = MUtilities. currencyFormat(23, '$');	// e.g. myMoney = '$23.00'
+var myMoney = MUtilities. currencyFormat(23, '$', 4);	// e.g. myMoney = '$23.0000'
 ```
 ---
 
@@ -191,4 +203,58 @@ The opposite of `{{shouldIn}}`, `{{notIn}}` will print the `verb` when the condi
 
 ```
 <p>I am stranger</p>
+```
+---
+
+####{{dateFormat dateObject}}
+Same utility method for `MUtilities.dateFormat()`.
+
+*Examples:*
+
+```html
+{{#with myPost}}
+	<!-- which myPost has createdAt property is date object-->
+	<p>{{dateFormat createdAt}}</p>	
+{{/with}}
+```
+
+*output: (html source)*
+
+```
+<p>2015-04-26</p>
+```
+---
+
+####{{datetimeFormat dateObject}}
+Same utility method for `MUtilities.datetimeFormat()`.
+
+*Examples:*
+
+```html
+{{#with myPost}}
+	<!-- which myPost has createdAt property is date object-->
+	<p>{{datetimeFormat createdAt}}</p>	
+{{/with}}
+```
+
+*output: (html source)*
+
+```
+<p>2015-04-26 09:20 AM</p>
+```
+---
+
+####{{currencyFormat value prefix decimal}}
+Same utility method for `MUtilities.currencyFormat()`.
+
+*Examples:*
+
+```html
+<p>{{currencyFormat 23 '$' 4}}</p>	
+```
+
+*output: (html source)*
+
+```
+<p>$23.0000</p>
 ```
