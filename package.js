@@ -1,7 +1,7 @@
 Package.describe({
 	name: 'kenken:meteor-utilities',
 	summary: 'A collection of common utilities for general app development.',
-	version: '2.3.4',
+	version: '2.4.0',
 	git: 'https://github.com/kenken17/meteor-utilities'
 });
 
@@ -14,10 +14,10 @@ Package.onUse(function(api) {
 	api.use('underscore');
 
 	// Both client and server file
-	api.addFiles('lib/helpers_utilities.js');
 	api.addFiles('lib/helpers_format.js');
 
 	// Client
+	api.addFiles('client/helpers_utilities.js');
 	api.addFiles('client/helpers_class.js');
 	api.addFiles('client/helpers_format.js');
 
