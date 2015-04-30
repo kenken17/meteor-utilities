@@ -17,9 +17,9 @@ UI.registerHelper('not', function(verb, x, y) {
 });
 
 UI.registerHelper('shouldIn', function(verb, x, y) {
-	return _.indexOf(x, y) > -1 ? verb : '';
+	return _.indexOf(y, x) > -1 ? verb : '';
 });
 
 UI.registerHelper('notIn', function(verb, x, y) {
-	return _.indexOf(x, y) > -1 ? '': verb;
+	return _.indexOf(y, x) > -1 ? '': verb;
 });
