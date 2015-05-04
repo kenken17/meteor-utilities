@@ -7,6 +7,7 @@ install:
 
 script:
   - "echo $PATH"
+  - "which meteor"
   - "export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   - "meteor add mike:mocha-package"
   - "meteor test-packages --velocity --driver-package respondly:test-9 reporter ./"
