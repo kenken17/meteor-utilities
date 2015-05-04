@@ -6,7 +6,7 @@ install:
   - "curl -L https://install.meteor.com | /bin/sh"
 
 script:
-  - "export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\$HOME/.meteor"
+  - "export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME/.meteor"
   - "echo $PATH"
   - "meteor add mike:mocha-package"
   - "meteor test-packages --velocity --driver-package respondly:test-9 reporter ./"
