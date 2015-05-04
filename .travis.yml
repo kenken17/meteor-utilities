@@ -7,5 +7,5 @@ install:
 
 script:
   - "export PATH=$PATH:$HOME/.meteor"
-  - "PWD"
+  - "pwd"
   - "meteor test-packages --velocity --driver-package respondly:test-9 reporter ./"
