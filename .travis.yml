@@ -2,8 +2,11 @@ language: node_js
 node_js:
   - "0.10"
 
+before_install:
+  - "curl -L http://git.io/ejPSng | /bin/sh"
+
 install:
-  - "curl https://install.meteor.com | /bin/sh"
+  - "meteor add mike:mocha-package"
 
 script:
   - "meteor test-packages --velocity --driver-package respondly:test-reporter ./"
