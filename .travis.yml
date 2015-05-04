@@ -7,5 +7,6 @@ install:
 
 script:
   - "export PATH=$PATH:$HOME/.meteor"
-  - "pwd"
+  - "ls -la"
+  - "meteor add mike:mocha-package"
   - "meteor test-packages --velocity --driver-package respondly:test-9 reporter ./"
