@@ -12,7 +12,7 @@ $ meteor add kenken:meteor-utilities
 ##Utilities
 Below are current available utility methods. This list will go on...
 
-####MUtilities.readyProps($form) - *client only*
+####MUtilities.readyProps($form, [skipEmpty]) - *client only*
 Most of the time, we need to convert form inputs into javascript object literal. The `MUtilities.readyProps` could help out. By adding `data-name` data attribute to the input elements, the utility method will pick up the respected input value. Current support:
 
 - \<input>
@@ -21,6 +21,8 @@ Most of the time, we need to convert form inputs into javascript object literal.
 - .input (css class)
 
 Also, if the input is `type="number"` or have a class `.number`, the object literal will use number instead of string.
+
+For `skipEmpty` option, if the input is an empty string. It will still skip through the property.
 
 *Examples:*
 
