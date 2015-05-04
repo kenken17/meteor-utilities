@@ -4,7 +4,6 @@ node_js:
 
 install:
   - "curl https://install.meteor.com | /bin/sh"
-  - "meteor add mike:mocha-package"
 
 script:
   - "meteor test-packages --velocity --driver-package respondly:test-reporter ./"
