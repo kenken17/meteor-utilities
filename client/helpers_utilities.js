@@ -1,6 +1,6 @@
 MUtilities = MUtilities || {};
 
-var readyProps = function($form) {
+var readyProps = function($form, skipEmpty) {
 	var props = {},
 		setValue = function($this) {
 			var value = $this.val(),
@@ -21,28 +21,32 @@ var readyProps = function($form) {
 			key = $this.data('name');
 
 		// only prepare those have data-name attributes
-		if (key && $this.val()) {
-			// split the key by '.'
-			var tokens = key.split('.');
-
-			if (tokens.length === 1) {
-				props[key] = setValue($this);
+		if (key) {
+			if ($this.val() === '' && skipEmpty) {
+				return true;	// skip this loop item
 			} else {
-				var tmp;
+				// split the key by '.'
+				var tokens = key.split('.');
 
-				// reverse traversing the keys
-				for (var x = tokens.length-1; x >= 0 ; x--) {
-					// if it is the last token, set the value, else just keep concatenate upwards
-					if (x === tokens.length-1) {
-						tmp = setValue($this);
+				if (tokens.length === 1) {
+					props[key] = setValue($this);
+				} else {
+					var tmp;
+
+					// reverse traversing the keys
+					for (var x = tokens.length - 1; x >= 0; x--) {
+						// if it is the last token, set the value, else just keep concatenate upwards
+						if (x === tokens.length - 1) {
+							tmp = setValue($this);
+						}
+
+						tmp = _.object([tokens[x]], [tmp]);
 					}
-
-					tmp = _.object([tokens[x]], [tmp]);
 				}
-			}
 
-			// need to make sure this wont cause too much calculation
-			$.extend(true, props, tmp);
+				// need to make sure this wont cause too much calculation
+				$.extend(true, props, tmp);
+			}
 		}
 	});
 
