@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "0.10"
+
+install:
+  - "curl -L https://install.meteor.com | /bin/sh"
+
+script:
+  - "export PATH=$PATH:$HOME/.meteor"
+  - "meteor test-packages --velocity --driver-package respondly:test-reporter ./"

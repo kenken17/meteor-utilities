@@ -22,7 +22,7 @@ describe('MUtilities', function() {
 					assert.deepEqual(input, result);
 				});
 
-				it('should result data from a form, with data-name (on sring &  number).', function() {
+				it('should result data from a form, with data-name (on string & number).', function() {
 					var $form = $('<form>' +
 						'<input type="text" data-name="dataString" value="a string" />' +
 						'<input type="number" data-name="dataNumber" value="1" />' +
@@ -59,6 +59,52 @@ describe('MUtilities', function() {
 							level: {
 								dataString: 'a string',
 								dataNumber: 1
+							}
+						},
+						input = MUtilities.readyProps($form);
+
+					assert.deepEqual(input, result);
+				});
+
+				it('should result data from a form, with data-name (on string & boolean).', function() {
+					var $form = $('<form>' +
+						'<input type="text" data-name="dataString" value="a string" />' +
+						'<input type="text" class="boolean" data-name="dataBoolean" value="true" />' +
+						'<input type="checkbox" class="boolean" data-name="dataBooleanCheckboxTrue" value="yes" checked />' +
+						'<input type="radio" class="boolean" data-name="dataBooleanRadioTrue" value="yes" checked />' +
+						'<input type="checkbox" class="boolean" data-name="dataBooleanCheckboxFalse" value="no" />' +
+						'<input type="radio" class="boolean" data-name="dataBooleanRadioFalse" value="no" />' +
+						'</form>'),
+						result = {
+							dataString: 'a string',
+							dataBoolean: true,
+							dataBooleanCheckboxTrue: true,
+							dataBooleanRadioTrue: true,
+							dataBooleanCheckboxFalse: false,
+							dataBooleanRadioFalse: false
+						},
+						input = MUtilities.readyProps($form);
+
+					assert.deepEqual(input, result);
+				});
+
+				it('should result data from a form, with data-name (with nested naming on string & boolean).', function() {
+					var $form = $('<form>' +
+						'<input type="text" data-name="level.dataString" value="a string" />' +
+						'<input type="text" class="boolean" data-name="level.dataBoolean" value="true" />' +
+						'<input type="checkbox" class="boolean" data-name="level.dataBooleanCheckboxTrue" value="yes" checked />' +
+						'<input type="radio" class="boolean" data-name="level.dataBooleanRadioTrue" value="yes" checked />' +
+						'<input type="checkbox" class="boolean" data-name="level.dataBooleanCheckboxFalse" value="no" />' +
+						'<input type="radio" class="boolean" data-name="level.dataBooleanRadioFalse" value="no" />' +
+						'</form>'),
+						result = {
+							level: {
+								dataString: 'a string',
+								dataBoolean: true,
+								dataBooleanCheckboxTrue: true,
+								dataBooleanRadioTrue: true,
+								dataBooleanCheckboxFalse: false,
+								dataBooleanRadioFalse: false
 							}
 						},
 						input = MUtilities.readyProps($form);

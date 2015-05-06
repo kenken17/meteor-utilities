@@ -19,8 +19,11 @@ Most of the time, we need to convert form inputs into javascript object literal.
 - \<textarea>
 - \<select>
 - .input (css class)
+- .boolean (css class)
 
 Also, if the input is `type="number"` or have a class `.number`, the object literal will use number instead of string.
+
+If the input have class `.boolean`, the object literal will use either `true` or `false` instead of string. E.g. `true (string)` will yield `true (boolean)`, else will result `false (boolean)`. If the input is `type=cehckbox` or `type=radio` and is `checked`, will result `true (boolean)` else `false (boolean)`.
 
 For `skipEmpty` option, if the input is an empty string. It will still skip through the property.
 
@@ -31,13 +34,13 @@ For `skipEmpty` option, if the input is an empty string. It will still skip thro
 	<input type="text" data-name="username" value="John Doe" />
 	<input type="email" data-name="email" value="jd@example.com" />
 	<input type="number" data-name="age" value="30" />
+	<input type="checkbox" class="boolean" data-name="working" value="yes" />
 	<select data-name="place">
 		<option value="City A">City A</option>
 		<option value="City B">City B</option>
 		<option value="City C" selected>City C</option>
 	</select>
 	<textarea data-name="description">My description here...</textarea>
-	
 </form>
 ```
 
@@ -53,6 +56,7 @@ $('#myform').on('submit', function(e) {
 			username: "John Doe",
 			email: "jd@example.com",
 			age: 30,
+			working: true,
 			place: "City C",
 			description: "My description here..."
 		}
