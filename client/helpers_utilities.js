@@ -3,17 +3,23 @@ MUtilities = MUtilities || {};
 var readyProps = function($form, skipEmpty) {
 	var props = {},
 		setValue = function($this) {
-			var value = $this.val(),
-				tmp;
+			var value = $this.val();
 
 			// check if is number
 			if ($this.attr('type') === 'number' || $this.hasClass('number')) {
-				tmp = _.isNaN(parseFloat(value)) ? value : parseFloat(value);
-			} else {
-				tmp = value;
+				return _.isNaN(parseFloat(value)) ? value : parseFloat(value);
 			}
 
-			return tmp;
+			// check if is boolean
+			if ($this.hasClass('boolean')) {
+				if ($this.is('input[type=checkbox]') || $this.is('input[type=radio]')) {
+					return $this.is(':checked');
+				} else {
+					return value === 'true';
+				}
+			}
+
+			return value;
 		};
 
 	$form.find('input, select, textarea, .input').each(function() {
