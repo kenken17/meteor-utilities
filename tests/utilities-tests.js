@@ -167,15 +167,23 @@ describe('MUtilities', function() {
 		});
 
 		describe('datetimeFormat', function() {
-			it('should output `2015-04-26` when input: MUtilities.datetimeFormat(new Date(2015, 3, 26))', function() {
+			it('should output `2015-04-26 12:00 AM` when input: MUtilities.datetimeFormat(new Date(2015, 3, 26))', function() {
 				expect(MUtilities.datetimeFormat(new Date(2015, 3, 26))).equal('2015-04-26 12:00 AM');
 			});
 
-			it('should output `2015-04-26` when input: MUtilities.datetimeFormat(new Date(2015, 3, 26, 1, 20))', function() {
+			it('should output `2015-04-26 01:20 AM` when input: MUtilities.datetimeFormat(new Date(2015, 3, 26, 1, 20))', function() {
 				expect(MUtilities.datetimeFormat(new Date(2015, 3, 26, 1, 20))).equal('2015-04-26 01:20 AM');
 			});
 
-			it('should output `2015-04-26` when input: MUtilities.datetimeFormat(new Date("2015-04-26T01:20:00")), SGT+8', function() {
+			it('should output `2015-04-26 12:00 AM` when input: MUtilities.datetimeFormat(new Date(2015, 3, 26, 0, 0))', function() {
+				expect(MUtilities.datetimeFormat(new Date(2015, 3, 26, 0, 0))).equal('2015-04-26 12:00 AM');
+			});
+
+			it('should output `2015-04-26 11:59 PM` when input: MUtilities.datetimeFormat(new Date(2015, 3, 26, 23, 59))', function() {
+				expect(MUtilities.datetimeFormat(new Date(2015, 3, 26, 23, 59))).equal('2015-04-26 11:59 PM');
+			});
+
+			it('should output `2015-04-26 09:20 AM` when input: MUtilities.datetimeFormat(new Date("2015-04-26T01:20:00")), SGT+8', function() {
 				expect(MUtilities.datetimeFormat(new Date('2015-04-26T01:20:00'))).equal('2015-04-26 09:20 AM');
 			});
 
