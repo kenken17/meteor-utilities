@@ -7,7 +7,15 @@ var readyProps = function($form, skipEmpty) {
 
 			// check if is number
 			if ($this.attr('type') === 'number' || $this.hasClass('number')) {
-				return _.isNaN(parseFloat(value)) ? value : parseFloat(value);
+
+				// since multiple select could be number in it
+				if (_.isArray(value)) {
+					return _.map(value, function(v) {
+						return _.isNaN(Number(v)) ? v : Number(v);
+					})
+				} else {
+					return _.isNaN(Number(value)) ? value : Number(value);
+				}
 			}
 
 			// check if is boolean
