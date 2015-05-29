@@ -139,6 +139,23 @@ var myMoney = MUtilities. currencyFormat(23, '$', 4);	// e.g. myMoney = '$23.000
 ```
 ---
 
+####MUtilities.highlighter(str, keys, [skipIgnore])
+`highlighter` will return the original string with a span wrapped any matched `keys`. `keys` could be a string or an array of strings. Default matching epxression is to ignore case-sensitive. If need to obey cases, pass in `true` for the third paramater - `skipIgnore`.
+
+*Examples:*
+
+```javascript
+var newString = MUtilities. highlighter('This is a string', 'string');
+// e.g. newString = 'This is a <span class="highlight">string</span>'
+
+var newString = MUtilities. highlighter('This is a string', ['is', 'string']);
+// e.g. newString = 'This <span class="highlight">is</span> a <span class="highlight">string</span>'
+```
+
+Note: in order to use the output from `highlighter` in template, use `{{{` & `}}}`, i.e. tripple curly braces.
+
+---
+
 ##UI Helpers
 
 ####{{should verb exp1 [exp2]}}

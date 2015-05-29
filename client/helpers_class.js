@@ -23,3 +23,7 @@ UI.registerHelper('shouldIn', function(verb, x, y) {
 UI.registerHelper('notIn', function(verb, x, y) {
 	return _.indexOf(y, x) > -1 ? '': verb;
 });
+
+UI.registerHelper('highlighter', function(str, key, skipIgnore) {
+	MUtilities.highlighter(str, key, skipIgnore);
+});
