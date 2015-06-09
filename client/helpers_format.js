@@ -12,6 +12,6 @@ UI.registerHelper('datetimeFormat', function(value) {
 	return MUtilities.datetimeFormat(new Date(value));
 });
 
-UI.registerHelper('currencyFormat', function(value, sign, decimal) {
-	return MUtilities.currencyFormat(value, sign, decimal);
+UI.registerHelper('currencyFormat', function(value, sign, decimal, skipZero) {
+	return MUtilities.currencyFormat(value, sign, decimal, skipZero);
 });
