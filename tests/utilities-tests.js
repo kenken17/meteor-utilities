@@ -217,6 +217,18 @@ describe('MUtilities', function() {
 				expect(MUtilities.currencyFormat(23.4567, '$', 0)).equal('$23');
 			});
 
+			it('should output `$0` when input: MUtilities.currencyFormat(0, "$", 0, false)', function() {
+				expect(MUtilities.currencyFormat(0, '$', 0, false)).equal('$0');
+			});
+
+			it('should output `` when input: MUtilities.currencyFormat(0, "$", 0, true)', function() {
+				expect(MUtilities.currencyFormat(0, '$', 0, true)).equal('');
+			});
+
+			it('should output `` when input: MUtilities.currencyFormat(null, "$", 0, true)', function() {
+				expect(MUtilities.currencyFormat(null, '$', 0, true)).equal('');
+			});
+
 			it('should be `0.00` when input: MUtilities.currencyFormat("something else")', function() {
 				expect(MUtilities.currencyFormat('something else')).equal('0.00');
 			});

@@ -127,8 +127,8 @@ var myDate = MUtilities.datetimeFormat(new Date());	// e.g. myDate = '2104-04-15
 ```
 ---
 
-####MUtilities.currencyFormat(value, [[prefix], decimal])
-`currencyFormat` will return a simple currency format for the input value, default to be 2 decimal point and no prefix.
+####MUtilities.currencyFormat(value, [[prefix], [decimal], [skipZero]])
+`currencyFormat` will return a simple currency format for the input value, default to be 2 decimal point and no prefix. If skipZero is `true`, when value is zero/null, it will return empty string.
 
 *Examples:*
 
@@ -136,6 +136,7 @@ var myDate = MUtilities.datetimeFormat(new Date());	// e.g. myDate = '2104-04-15
 var myMoney = MUtilities. currencyFormat(23);	// e.g. myMoney = '23.00'
 var myMoney = MUtilities. currencyFormat(23, '$');	// e.g. myMoney = '$23.00'
 var myMoney = MUtilities. currencyFormat(23, '$', 4);	// e.g. myMoney = '$23.0000'
+var myMoney = MUtilities. currencyFormat(0, '$', 2, true);	// e.g. myMoney = ''
 ```
 ---
 
