@@ -1,7 +1,7 @@
 Package.describe({
 	name: 'kenken:meteor-utilities',
 	summary: 'A collection of common utilities for general app development.',
-	version: '2.7.2',
+	version: '2.7.3',
 	git: 'https://github.com/kenken17/meteor-utilities'
 });
 
@@ -11,6 +11,7 @@ Package.onUse(function(api) {
 	// Meteor dependencies
 	api.use('ui');
 	api.use('templating');
+	api.use('spacebars');
 	api.use('underscore');
 
 	// Both client and server file
