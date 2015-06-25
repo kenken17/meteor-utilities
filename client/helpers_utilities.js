@@ -3,11 +3,17 @@ MUtilities = MUtilities || {};
 var readyProps = function($form, skipEmpty) {
 	var props = {},
 		setValue = function($this) {
-			var value = $this.val();
+			var value;
+
+			// if the element is not an input, use text() instead of default val()
+			if ($this.is('input') || $this.is('select') || $this.is('textarea')) {
+				value = $this.val();
+			} else {
+				value = $this.text();
+			}
 
 			// check if is number
 			if ($this.attr('type') === 'number' || $this.hasClass('number')) {
-
 				// since multiple select could be number in it
 				if (_.isArray(value)) {
 					return _.map(value, function(v) {
