@@ -107,6 +107,41 @@ var var2 = MUtilities.isValidWebUrl('I am not a url.');	// false
 ```
 ---
 
+####MUtilities.setCookie(id, value, [[expiry], [path]]) - *client only*
+`setCookie` will set the `value` to the `id` (name), for an `expiry` in milliseconds. If `expiry` is omitted, default to `1 day`. `path` is set default to `'/'` 
+
+*Examples:*
+
+```javascript
+MUtilities.setCookie('cookieName', 'cookieValue', 2 * 60 * 60 * 1000, '/');	// set cookie for 2 hours on path '/'
+```
+---
+
+####MUtilities.getCookie(id) - *client only*
+`getCookie` will return the cookie value set by `setCookie`.
+
+*Examples:*
+
+```javascript
+MUtilities.setCookie('cookieName', 'cookieValue');
+
+var cookie = MUtilities.getCookie('cookieName');	// cookie = 'cookieValue'
+```
+---
+
+####MUtilities.removeCookie(id, [path]) - *client only*
+`removeCookie` will remove the cookie with the `id` pass as the first argument. If `path` is omitted, `'/'` will be used.
+
+*Examples:*
+
+```javascript
+MUtilities.setCookie('cookieName', 'cookieValue');
+MUtilities.removeCookie('cookieName');
+
+var cookie = MUtilities.getCookie('cookieName');	// cookie = null
+```
+---
+
 ####MUtilities.dateFormat(dateObject)
 `dateFormat` will return the a naive predefined date format in `YYYY-MM-DD`. By now the format are fixed.
 

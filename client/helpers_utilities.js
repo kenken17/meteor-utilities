@@ -117,5 +117,46 @@ var isValidWebUrl = function(url) {
 	return re_weburl.test(url);
 };
 
+var setCookie = function(id, value, exp, path) {	// exp in milli second
+	var d = new Date();
+
+	d.setTime(d.getTime() + (exp || 24 * 60 * 60 * 1000));	// default 1 day to expire
+
+	var expires = "expires=" + d.toUTCString();
+
+	document.cookie = encodeURIComponent(id) + "=" + encodeURIComponent(value) + "; " + expires + (path ? "; path=" + path : "/");
+};
+
+var getCookie = function(id) {
+	var found = null,
+		cookieTokens = document.cookie.split(';');
+
+	_.each(cookieTokens, function(cookie) {
+		var matches = cookie.trim().match(new RegExp(id + '=(.*)'));
+
+		found = matches ? decodeURIComponent(matches[1]) : null;
+	});
+
+	return found;
+};
+
+var removeCookie = function(id, path) {
+	var found = null,
+		cookieTokens = document.cookie.split(';');
+
+	_.each(cookieTokens, function(cookie) {
+		var matches = cookie.trim().match(new RegExp(id + '=(.*)'));
+
+		found = matches ? decodeURIComponent(matches[1]) : null;
+
+		if (found) {
+			document.cookie = encodeURIComponent(id) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (path ? "; path=" + path : "/");
+		}
+	});
+};
+
 MUtilities.readyProps = readyProps;
 MUtilities.isValidWebUrl = isValidWebUrl;
+MUtilities.getCookie = getCookie;
+MUtilities.setCookie = setCookie;
+MUtilities.removeCookie = removeCookie;
