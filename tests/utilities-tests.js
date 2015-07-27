@@ -140,6 +140,39 @@ describe('MUtilities', function() {
 					});
 				});
 			});
+
+			describe('setCookie & getCookie', function() {
+				it('should show setCookie is a function', function() {
+					expect(MUtilities.setCookie).to.be.a('function');
+				});
+
+				it('should show getCookie is a function', function() {
+					expect(MUtilities.getCookie).to.be.a('function');
+				});
+
+				describe('Test for cookie being set & get', function() {
+					it('should show cookie being set & get correctly.', function() {
+						MUtilities.setCookie('testCookie', 'Hello');
+
+						expect(MUtilities.getCookie('testCookie')).equal('Hello');
+					});
+				});
+			});
+
+			describe('removeCookie', function() {
+				it('should show removeCookie is a function', function() {
+					expect(MUtilities.removeCookie).to.be.a('function');
+				});
+
+				describe('Test for cookie being removed', function() {
+					it('should show cookie being removed correctly.', function() {
+						MUtilities.setCookie('testCookie', 'Hello');
+						MUtilities.removeCookie('testCookie');
+
+						expect(MUtilities.getCookie('testCookie')).equal(null);
+					});
+				});
+			});
 		}
 	});
 
