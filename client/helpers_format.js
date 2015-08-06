@@ -15,3 +15,7 @@ UI.registerHelper('datetimeFormat', function(value) {
 UI.registerHelper('currencyFormat', function(value, sign, decimal, skipZero) {
 	return MUtilities.currencyFormat(value, sign, decimal, skipZero);
 });
+
+UI.registerHelper('nl2br', function(str) {
+	return MUtilities.nl2br(str);
+});
