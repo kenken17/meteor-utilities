@@ -142,23 +142,38 @@ var cookie = MUtilities.getCookie('cookieName');	// cookie = null
 ```
 ---
 
-####MUtilities.dateFormat(dateObject)
-`dateFormat` will return the a naive predefined date format in `YYYY-MM-DD`. By now the format are fixed.
+####MUtilities.dateFormat(dateObject, format)
+`dateFormat` will return the a naive predefined date format in `YYYY-MM-DD`. By now the format are fixed:
+
+* dd-mm-yyyy
+* dd/mm/yyyy
+* yyyy-mm-dd
+* yyyy/mm/dd
 
 *Examples:*
 
 ```javascript
 var myDate = MUtilities.dateFormat(new Date());	// e.g. myDate = '2104-04-15'
+
+var myDate = MUtilities.dateFormat(new Date(), 'dd/mm/yyyy');	// e.g. myDate = '15/04/2104'
 ```
 ---
 
-####MUtilities.datetimeFormat(dateObject)
-`datetimeFormat` will return the a naive predefined date & time format in `YYYY-MM-DD HH:MM (period)`. By now the format are fixed.
+####MUtilities.datetimeFormat(dateObject, format)
+`datetimeFormat` will return the a naive predefined date & time format in `YYYY-MM-DD HH:MM (period)`. By now the format are fixed:
+
+* dd-mm-yyyy
+* dd/mm/yyyy
+* yyyy-mm-dd
+* yyyy/mm/dd
+
 
 *Examples:*
 
 ```javascript
 var myDate = MUtilities.datetimeFormat(new Date());	// e.g. myDate = '2104-04-15 12:00 AM'
+
+var myDate = MUtilities.datetimeFormat(new Date(), 'dd/mm/yyyy');	// e.g. myDate = '15/04/2104 12:00 AM'
 ```
 ---
 
