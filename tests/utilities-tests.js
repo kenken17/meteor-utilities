@@ -111,6 +111,36 @@ describe('MUtilities', function() {
 
 					assert.deepEqual(input, result);
 				});
+
+				it('should result data from a form, with data-name (with nested naming on string & boolean & array).', function() {
+					var $form = $('<form>' +
+						'<input type="text" data-name="level.dataString" value="a string" />' +
+						'<input type="text" class="boolean" data-name="level.dataBoolean" value="true" />' +
+						'<input type="checkbox" class="boolean" data-name="level.dataBooleanCheckboxTrue" value="yes" checked />' +
+						'<input type="radio" class="boolean" data-name="level.dataBooleanRadioTrue" value="yes" checked />' +
+						'<input type="checkbox" class="boolean" data-name="level.dataBooleanCheckboxFalse" value="no" />' +
+						'<input type="radio" class="boolean" data-name="level.dataBooleanRadioFalse" value="no" />' +
+						'<input type="text" data-name="dataArray[]" value="array 1" />' +
+						'<input type="text" data-name="dataArray[]" value="array 2" />' +
+						'</form>'),
+						result = {
+							level: {
+								dataString: 'a string',
+								dataBoolean: true,
+								dataBooleanCheckboxTrue: true,
+								dataBooleanRadioTrue: true,
+								dataBooleanCheckboxFalse: false,
+								dataBooleanRadioFalse: false
+							},
+							dataArray: [
+								"array 1",
+								"array 2"
+							]
+						},
+						input = MUtilities.readyProps($form);
+
+					assert.deepEqual(input, result);
+				});
 			});
 
 			describe('isValidWebUrl', function() {

@@ -38,7 +38,8 @@ var readyProps = function($form, skipEmpty) {
 
 	$form.find('input, select, textarea, .input').each(function() {
 		var $this = $(this),
-			key = $this.data('name');
+			key = $this.data('name'),
+			last2char;
 
 		// only prepare those have data-name attributes
 		if (key) {
@@ -46,26 +47,62 @@ var readyProps = function($form, skipEmpty) {
 				return true;	// skip this loop item
 			} else {
 				// split the key by '.'
-				var tokens = key.split('.');
+				var tokens = key.trim().split('.');
 
 				if (tokens.length === 1) {
-					props[key] = setValue($this);
-				} else {
-					var tmp;
+					last2char = key.slice(-2);
 
-					// reverse traversing the keys
-					for (var x = tokens.length - 1; x >= 0; x--) {
-						// if it is the last token, set the value, else just keep concatenate upwards
-						if (x === tokens.length - 1) {
-							tmp = setValue($this);
+					// check if the key indicate an array
+					if (last2char === '[]') {
+						key = key.substring(0, key.length - 2);
+
+						if (props[key] === undefined) {
+							props[key] = [];
 						}
 
-						tmp = _.object([tokens[x]], [tmp]);
+						props[key].push(setValue($this));
+					} else {
+						props[key] = setValue($this);
 					}
-				}
+				} else {
+					function assign(obj, keyPath) {
+						var lastKeyIndex = keyPath.length - 1,
+							isArray = false;
 
-				// need to make sure this wont cause too much calculation
-				$.extend(true, props, tmp);
+						for (var i = 0; i < lastKeyIndex; ++i) {
+							key = keyPath[i];
+
+							if (!(key in obj)) {
+								obj[key] = {};
+							}
+
+							obj = obj[key];
+						}
+
+						last2char = keyPath[lastKeyIndex].slice(-2);
+
+						// strip if the '[]'
+						if (last2char === '[]') {
+							key = keyPath[lastKeyIndex].substring(0, keyPath[lastKeyIndex].length - 2);
+							isArray = true;
+						} else {
+							key = keyPath[lastKeyIndex];
+							isArray = false;
+						}
+
+						if (isArray) {
+							if (!obj[key]) {
+								obj[key] = [];
+							}
+
+							obj[key].push(setValue($this));
+						} else {
+							obj[key] = setValue($this);
+						}
+					}
+
+					assign(props, tokens);
+				}
 			}
 		}
 	});
