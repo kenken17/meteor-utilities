@@ -9,10 +9,10 @@ A collection of common utilities for general app development. The idea behind th
 $ meteor add kenken:meteor-utilities
 ```
 
-##Utilities
+### Utilities
 Below are current available utility methods. This list will go on...
 
-####MUtilities.readyProps($form, [skipEmpty]) - *client only*
+#### MUtilities.readyProps($form, [skipEmpty]) - *client only*
 Most of the time, we need to convert form inputs into javascript object literal. The `MUtilities.readyProps` could help out. By adding `data-name` data attribute to the input elements, the utility method will pick up the respected input value. Current support:
 
 - \<input>
@@ -35,6 +35,8 @@ For `skipEmpty` option, if the input is an empty string. It will still skip thro
 	<input type="email" data-name="email" value="jd@example.com" />
 	<input type="number" data-name="age" value="30" />
 	<input type="checkbox" class="boolean" data-name="working" value="yes" />
+	<input type="text" data-name="languages[]" value="array item 1" />
+	<input type="text" data-name="languages[]" value="array item 2" />
 	<select data-name="place">
 		<option value="City A">City A</option>
 		<option value="City B">City B</option>
@@ -47,16 +49,20 @@ For `skipEmpty` option, if the input is an empty string. It will still skip thro
 ```javascript
 $('#myform').on('submit', function(e) {
 	var $form = $(e.currentTarget);
-	
+
 	var inputsObj = MUtilities.readyProps($form);
 	/*
-		Now we have: 
-		
+		Now we have:
+
 		inputsObj = {
 			username: "John Doe",
 			email: "jd@example.com",
 			age: 30,
 			working: true,
+			languages: [
+				"array item 1",
+				"array item 2"
+			]
 			place: "City C",
 			description: "My description here..."
 		}
@@ -79,24 +85,24 @@ The `MUtilities.readyProps` method also provides a convenient way to nest proper
 ```javascript
 $('#myform').on('submit', function(e) {
 	var $form = $(e.currentTarget);
-	
+
 	var inputsObj = MUtilities.readyProps($form);
 	/*
-		Now we have: 
-		
+		Now we have:
+
 		inputsObj = {
 			todo: {
 				one: "Todo 1",
 				two: "Todo 2",
 				three: "Todo 3"
-			}		
+			}
 		}
 	*/
 });
 ```
 ---
 
-####MUtilities.isValidWebUrl(testUrl) - *client only*
+#### MUtilities.isValidWebUrl(testUrl) - *client only*
 `isValidWebUrl` will return true is the input `testUrl` is a valid web url. The testing regular expression was taken from a [gist](https://gist.github.com/dperini/729294) by Diego Perini.
 
 *Examples:*
@@ -107,8 +113,8 @@ var var2 = MUtilities.isValidWebUrl('I am not a url.');	// false
 ```
 ---
 
-####MUtilities.setCookie(id, value, [[expiry], [path]]) - *client only*
-`setCookie` will set the `value` to the `id` (name), for an `expiry` in milliseconds. If `expiry` is omitted, default to `1 day`. `path` is set default to `'/'` 
+#### MUtilities.setCookie(id, value, [[expiry], [path]]) - *client only*
+`setCookie` will set the `value` to the `id` (name), for an `expiry` in milliseconds. If `expiry` is omitted, default to `1 day`. `path` is set default to `'/'`
 
 *Examples:*
 
@@ -117,7 +123,7 @@ MUtilities.setCookie('cookieName', 'cookieValue', 2 * 60 * 60 * 1000, '/');	// s
 ```
 ---
 
-####MUtilities.getCookie(id) - *client only*
+#### MUtilities.getCookie(id) - *client only*
 `getCookie` will return the cookie value set by `setCookie`.
 
 *Examples:*
@@ -129,7 +135,7 @@ var cookie = MUtilities.getCookie('cookieName');	// cookie = 'cookieValue'
 ```
 ---
 
-####MUtilities.removeCookie(id, [path]) - *client only*
+#### MUtilities.removeCookie(id, [path]) - *client only*
 `removeCookie` will remove the cookie with the `id` pass as the first argument. If `path` is omitted, `'/'` will be used.
 
 *Examples:*
@@ -142,7 +148,7 @@ var cookie = MUtilities.getCookie('cookieName');	// cookie = null
 ```
 ---
 
-####MUtilities.dateFormat(dateObject, format)
+#### MUtilities.dateFormat(dateObject, format)
 `dateFormat` will return the a naive predefined date format in `YYYY-MM-DD`. By now the format are fixed:
 
 * dd-mm-yyyy
@@ -159,7 +165,7 @@ var myDate = MUtilities.dateFormat(new Date(), 'dd/mm/yyyy');	// e.g. myDate = '
 ```
 ---
 
-####MUtilities.datetimeFormat(dateObject, format)
+#### MUtilities.datetimeFormat(dateObject, format)
 `datetimeFormat` will return the a naive predefined date & time format in `YYYY-MM-DD HH:MM (period)`. By now the format are fixed:
 
 * dd-mm-yyyy
@@ -177,7 +183,7 @@ var myDate = MUtilities.datetimeFormat(new Date(), 'dd/mm/yyyy');	// e.g. myDate
 ```
 ---
 
-####MUtilities.currencyFormat(value, [[prefix], [decimal], [skipZero]])
+#### MUtilities.currencyFormat(value, [[prefix], [decimal], [skipZero]])
 `currencyFormat` will return a simple currency format for the input value, default to be 2 decimal point and no prefix. If skipZero is `true`, when value is zero/null, it will return empty string.
 
 *Examples:*
@@ -190,7 +196,7 @@ var myMoney = MUtilities. currencyFormat(0, '$', 2, true);	// e.g. myMoney = ''
 ```
 ---
 
-####MUtilities.highlighter(str, keys, [skipIgnore])
+#### MUtilities.highlighter(str, keys, [skipIgnore])
 `highlighter` will return the original string with a span wrapped any matched `keys`. `keys` could be a string or an array of strings. Default matching epxression is to ignore case-sensitive. If need to obey cases, pass in `true` for the third paramater - `skipIgnore`.
 
 *Examples:*
@@ -207,9 +213,9 @@ Note: in order to use the output from `highlighter` in template, use `{{{` & `}}
 
 ---
 
-##UI Helpers
+## I Helpers
 
-####{{should verb exp1 [exp2]}}
+#### {{should verb exp1 [exp2]}}
 The `{{should}}` helper is to print out the `verb` given when condition is true. There are places such as output a class or a string when certain condition is true.
 
 *Examples:*
@@ -227,7 +233,7 @@ The `{{should}}` helper is to print out the `verb` given when condition is true.
 ```
 ---
 
-####{{not verb exp1 [exp2]}}
+#### {{not verb exp1 [exp2]}}
 The opposite of `{{should}}`, `{{not}}` will print the `verb` when the condition is false.
 
 *Examples:*
@@ -244,8 +250,8 @@ The opposite of `{{should}}`, `{{not}}` will print the `verb` when the condition
 <p>STRING HERE</p>
 ```
 
-####{{shouldIn verb exp1 exp2}}
-The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp2` is in the `exp1` array. It will print out the `verb` given when condition is true. 
+#### {{shouldIn verb exp1 exp2}}
+The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp2` is in the `exp1` array. It will print out the `verb` given when condition is true.
 
 *Note that `exp2` is required.*
 
@@ -263,7 +269,7 @@ The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp
 ```
 ---
 
-####{{notIn verb exp1 exp2}}
+#### {{notIn verb exp1 exp2}}
 The opposite of `{{shouldIn}}`, `{{notIn}}` will print the `verb` when the condition is false.
 
 *Examples:*
@@ -280,7 +286,7 @@ The opposite of `{{shouldIn}}`, `{{notIn}}` will print the `verb` when the condi
 ```
 ---
 
-####{{dateFormat dateObject}}
+#### {{dateFormat dateObject}}
 Same utility method for `MUtilities.dateFormat()`.
 
 *Examples:*
@@ -288,7 +294,7 @@ Same utility method for `MUtilities.dateFormat()`.
 ```html
 {{#with myPost}}
 	<!-- which myPost has createdAt property is date object-->
-	<p>{{dateFormat createdAt}}</p>	
+	<p>{{dateFormat createdAt}}</p>
 {{/with}}
 ```
 
@@ -299,7 +305,7 @@ Same utility method for `MUtilities.dateFormat()`.
 ```
 ---
 
-####{{datetimeFormat dateObject}}
+#### {{datetimeFormat dateObject}}
 Same utility method for `MUtilities.datetimeFormat()`.
 
 *Examples:*
@@ -307,7 +313,7 @@ Same utility method for `MUtilities.datetimeFormat()`.
 ```html
 {{#with myPost}}
 	<!-- which myPost has createdAt property is date object-->
-	<p>{{datetimeFormat createdAt}}</p>	
+	<p>{{datetimeFormat createdAt}}</p>
 {{/with}}
 ```
 
@@ -318,13 +324,13 @@ Same utility method for `MUtilities.datetimeFormat()`.
 ```
 ---
 
-####{{currencyFormat value prefix decimal}}
+#### {{currencyFormat value prefix decimal}}
 Same utility method for `MUtilities.currencyFormat()`.
 
 *Examples:*
 
 ```html
-<p>{{currencyFormat 23 '$' 4}}</p>	
+<p>{{currencyFormat 23 '$' 4}}</p>
 ```
 
 *output: (html source)*
