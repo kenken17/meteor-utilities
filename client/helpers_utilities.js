@@ -9,7 +9,7 @@ var readyProps = function($form, skipEmpty) {
 			if ($this.is('input') || $this.is('select') || $this.is('textarea')) {
 				value = $this.val();
 			} else {
-				value = $this.text();
+				value = $this.data('value') || $this.text();
 			}
 
 			// check if is number
@@ -60,7 +60,9 @@ var readyProps = function($form, skipEmpty) {
 							props[key] = [];
 						}
 
-						props[key].push(setValue($this));
+						if (setValue($this) !== '') {
+							props[key].push(setValue($this));
+						}
 					} else {
 						props[key] = setValue($this);
 					}
@@ -95,7 +97,9 @@ var readyProps = function($form, skipEmpty) {
 								obj[key] = [];
 							}
 
-							obj[key].push(setValue($this));
+							if (setValue($this) !== '') {
+								obj[key].push(setValue($this));
+							}
 						} else {
 							obj[key] = setValue($this);
 						}
