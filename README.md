@@ -251,7 +251,7 @@ The opposite of `{{should}}`, `{{not}}` will print the `verb` when the condition
 ```
 
 #### {{shouldIn verb exp1 exp2}}
-The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp2` is in the `exp1` array. It will print out the `verb` given when condition is true.
+The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp1` is in the `exp2` array. It will print out the `verb` given when condition is true.
 
 *Note that `exp2` is required.*
 
@@ -259,7 +259,7 @@ The `{{shouldIn}}` helper is similar to `{{should}}`, except that it checks `exp
 
 ```html
 <!-- roles = ['admin'] -->
-<p>{{shouldIn 'I am admin' roles 'admin}}</p>	<!-- true condition -->
+<p>{{shouldIn 'I am admin' 'admin' roles}}</p>	<!-- true condition -->
 ```
 
 *output (html source):*
@@ -276,7 +276,7 @@ The opposite of `{{shouldIn}}`, `{{notIn}}` will print the `verb` when the condi
 
 ```html
 <!-- roles = ['admin'] -->
-<p>{{notIn 'I am stranger' roles 'stranger'}}</p>	<!-- false condition -->
+<p>{{notIn 'I am stranger' 'stranger' roles}}</p>	<!-- false condition -->
 ```
 
 *output: (html source)*
