@@ -19,3 +19,8 @@ UI.registerHelper('currencyFormat', function(value, sign, decimal, skipZero) {
 UI.registerHelper('nl2br', function(str) {
 	return MUtilities.nl2br(str);
 });
+
+UI.registerHelper('charLimit', function(str, limit, suffix) {
+	return MUtilities.charLimit(str, limit, suffix);
+});
+
