@@ -213,7 +213,25 @@ Note: in order to use the output from `highlighter` in template, use `{{{` & `}}
 
 ---
 
-## I Helpers
+#### MUtilities.charLimit(str, [limit, suffix])
+`charLimit` will return a truncated string that obeys the `limit` followed by an optional `suffix`. `limit` must be a number, default is set to `100` and `suffix` must be a string, default is set to `...`.
+
+*Examples:*
+
+```javascript
+var truncatedString = MUtilities. charLimit('This is a string.', 10);
+// e.g. truncatedString = 'This is a...'
+
+var truncatedString = MUtilities. highlighter('This is a string.', 10, ' >>');
+// e.g. truncatedString = 'This is a >>'
+```
+
+Note: The truncated string is trying to cut off from the nearest word instead of exact limit.
+
+---
+
+
+## Helpers
 
 #### {{should verb exp1 [exp2]}}
 The `{{should}}` helper is to print out the `verb` given when condition is true. There are places such as output a class or a string when certain condition is true.
