@@ -24,3 +24,6 @@ UI.registerHelper('charLimit', function(str, limit, suffix) {
 	return MUtilities.charLimit(str, limit, suffix);
 });
 
+UI.registerHelper('highlighter', function(str, key, skipIgnore) {
+	MUtilities.highlighter(str, key, skipIgnore);
+});
