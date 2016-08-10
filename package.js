@@ -28,8 +28,8 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-	api.use(['mike:mocha-package@0.5.9', "practicalmeteor:chai"]);
-	api.use('kenken:meteor-utilities');
-
-	api.addFiles('tests/utilities-tests.js');
+	// api.use(['mike:mocha-package@0.5.9', "practicalmeteor:chai"]);
+	// api.use('kenken:meteor-utilities');
+    //
+	// api.addFiles('tests/utilities-tests.js');
 });
